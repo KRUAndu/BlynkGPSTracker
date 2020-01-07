@@ -15,3 +15,8 @@ What you'll need on the software side:
 * ESP32 board library
 
 Blynk server side code will be added later.
+
+TODO:
+
+* SMS sending support: https://github.com/vshymanskyy/TinyGSM/pull/349
+* Ninebot ES1/2/4 lock integration
