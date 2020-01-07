@@ -1,3 +1,29 @@
+// Retrieve the user's phone location.
+BLYNK_WRITE(V15) {
+  float phoneLatitude = param[0].asFloat(); 
+  float phoneLongitude = param[1].asFloat();
+
+/**************************************************************** 
+ *  This will calculate the distance of you from the tracker. not done yet, must implement later. might need #include <math.h>
+  float calcDistance(float A, float B, float C, float D) {
+    float dLat;
+    float dLon;
+    dLat = (C - A);
+    dLon = (D - B);
+    dLat /= 57.29577951;
+    dLon /= 57.29577951; 
+    float v_a;
+    float v_c;
+    float distance;
+
+    v_a = sin(dLat/2) * sin(dLat/2) + cos(A) * cos(C) * sin(dLon/2) * sin(dLon/2);
+    v_c = 2 * atan2(sqrt(v_a),sqrt(1-v_a));
+    distance = r * v_c;
+    return distance;
+  }
+**************************************************************** */
+}
+
 int gpsRetryCount = 0; // For counting GPS signal query retries...
 
 void getGPS() {
