@@ -9,10 +9,10 @@ I cannot recommend the ESP8266 due to limited serial. AT commands may not go thr
 
 What you'll need on the software side:
 
-* Blynk
-* TinyGSM (building on 0.7.9)
+* Blynk (library version 0.6.1)
+* TinyGSM (library version 0.10.5)
 * TimeLib
-* ESP32 board library
+* ESP32 board library (board library 1.0.4) - https://github.com/espressif/arduino-esp32
 
 Blynk server side code will be added later.
 
