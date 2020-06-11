@@ -28,8 +28,8 @@ int gpsRetryCount = 0; // For counting GPS signal query retries...
 
 void getGPS() {
   modem.enableGPS();
-    float lat, lng, speed;
-    int alt, vsat, usat;
+    float lat, lng, speed, alt;
+    int vsat, usat;
     modem.getGPS(&lat, &lng, &speed, &alt, &vsat, &usat); delay(10);
     //Serial.println("getGPS started.");
 
@@ -73,7 +73,7 @@ void getGPS() {
     delay(10);
 
   gpsLockLed.on(); //Turns on the GPS Lock LED
-  myMap.location(0, lat, lng, "Bike0"); delay(10); // index 0 for myMap.location submit
+  myMap.location(0, lt, ln, "Bike0"); delay(10); // index 0 for myMap.location submit
   Blynk.virtualWrite(V7, lt); Blynk.virtualWrite(V9, ln);  //Display coordinates on value displays
   getRTC();
   Blynk.virtualWrite(V6, 0); // Reter update button from 1 to 0.
