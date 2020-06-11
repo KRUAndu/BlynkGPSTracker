@@ -8,52 +8,22 @@
  *
  ********************************************************
  * https://github.com/KRUAndu/BlynkGPSTracker/
- * SOMEWHAT UNSTABLE CODE AND POSSIBLE BUGS, IT'S STILL A PROTOTYPE... EXPECT ESP CORE PANICS.
- * I am writing this code to run on an ESP32 and SIM7000 NB-IoT + GPS module, so change the code accordingly to your network module/CPU.
+ * SOMEWHAT UNSTABLE CODE AND POSSIBLE BUGS, EXPECT ESP CORE PANICS.
+ * I am writing this code to run on an ESP32 and SIM7000 NB-IoT + GPS module, so change the code accordingly to your network module/CPU however you desire.
  **************************************************************/
 
-// Please enter your APN, server information and auth tokens below.
-const char apn[]  = ""; // This is important, check your carrier for this.
-const char user[] = ""; // In my case, user and pass were not needed.
-const char pass[] = "";
-
-// If the SIM card has a PIN code, uncomment definition and set it below.
-//#define GSM_PIN ""
-
-// Blynk setup
-const char server[] = ""; // Fixed ip or domain (recommended)... it should go here.
-const char auth[]   = ""; // Your auth token should go here.
-
-// Select your modem (the modem has to be supported by TinyGSM needs to include GPS):
-#define TINY_GSM_MODEM_SIM7000
-// #define TINY_GSM_MODEM_SIM808
-// #define TINY_GSM_MODEM_SIM868
-// #define TINY_GSM_MODEM_SIM900
-// #define TINY_GSM_MODEM_SIM7000
-// #define TINY_GSM_MODEM_SIM5360
-// #define TINY_GSM_MODEM_SIM7600
-// #define TINY_GSM_MODEM_UBLOX
-// #define TINY_GSM_MODEM_SARAR4
-// #define TINY_GSM_MODEM_M95
-// #define TINY_GSM_MODEM_BG96
-// #define TINY_GSM_MODEM_A6
-// #define TINY_GSM_MODEM_A7
-// #define TINY_GSM_MODEM_M590
-// #define TINY_GSM_MODEM_MC60
-// #define TINY_GSM_MODEM_MC60E
-// #define TINY_GSM_MODEM_ESP8266
-// #define TINY_GSM_MODEM_XBEE
-// #define TINY_GSM_MODEM_SEQUANS_MONARCH
+// !!! IMPORTANT !!! - The connection details should be defined in the file "blynkConnectionInfo.h"
+#include "blynkConnectionInfo.h"    // Please define your LTE modem's APN and SIM pin details and Blynk connection info in this file.
 
 #define BLYNK_PRINT Serial // Comment this out to disable prints and save space
 
 // Default heartbeat interval for GSM is 60. If you want override this value, uncomment and set this option:
 //#define BLYNK_HEARTBEAT 30
 
-#include <TinyGsmClient.h> // TinyGSM library
-#include <BlynkSimpleTinyGSM.h> // Native Blynk communication with the TinyGSM library
-#include <TimeLib.h> // Time library
-#include <WidgetRTC.h> // Real-time clock Blynk library (necessary for fetching time from the server)
+#include <TinyGsmClient.h>          // TinyGSM library
+#include <BlynkSimpleTinyGSM.h>     // Native Blynk communication with the TinyGSM library
+#include <TimeLib.h>                // Time library
+#include <WidgetRTC.h>              // Real-time clock Blynk library (necessary for fetching time from the server)
 
 /* // BLE connection, this *needs* some more research.
 #define BLYNK_USE_DIRECT_CONNECT // For BLE connection (init. supposedly)
@@ -126,7 +96,7 @@ void setup()
   //modem.simUnlock("1234");
 
   // Start Blynk session with server
-  Blynk.begin(auth, modem, apn, user, pass, server, 8080); // Port set to 8080 as the SIM7000 is not capable of SSL with TinyGSM yet...
+  Blynk.begin(auth, modem, apn, user, pass, server, port);
 
   // Other Time library functions can be used, like: timeStatus(), setSyncInterval(interval)...
   // Read more: http://www.pjrc.com/teensy/td_libs_Time.html
